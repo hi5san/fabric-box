@@ -78,7 +78,9 @@ Vagrant.configure("2") do |config|
     apt-get update
     apt-get install -y docker.io docker-compose
     usermod -aG docker vagrant
-    apt-get install -y nodejs npm
+    # NodeJs in repository is 8.10.x and cause problems so use newer from nodesource.
+    curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
+    apt-get install -y nodejs
     apt-get install -y make gcc g++ libtool
     pushd /home/vagrant
     chown vagrant.vagrant playWithCLI.sh
